@@ -188,7 +188,7 @@ class ToolBond(gl.Contract):
 
         return gl.vm.run_nondet_unsafe(inspect, validate)
 
-    @gl.public.write
+    @gl.public.write.payable
     def create_bond(
         self,
         customer: str,

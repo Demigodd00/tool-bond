@@ -1,6 +1,7 @@
 from pathlib import Path
 import hashlib
 import json
+import subprocess
 
 
 CONTRACT = Path(__file__).resolve().parents[2] / "contracts" / "ToolBond.py"
@@ -10,6 +11,18 @@ PROMISE = ROOT + "promise.txt"
 REQUEST = ROOT + "request.txt"
 RESPONSE = ROOT + "response.txt"
 BOND = 10**15
+
+
+def test_create_bond_schema_is_payable():
+    result = subprocess.run(
+        ["genvm-lint", "schema", str(CONTRACT), "--json"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    methods = json.loads(result.stdout)["schema"]["methods"]
+    assert methods["create_bond"]["payable"] is True
+    assert all(not details.get("payable", False) for name, details in methods.items() if name != "create_bond")
 
 
 def addr(account):

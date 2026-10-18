@@ -75,6 +75,13 @@ def main() -> None:
     deployed = base64.b64decode(encoded, validate=True).decode().replace("\r\n", "\n")
     if deployed != source:
         raise RuntimeError("deployed source differs from committed source")
+    schema_response = client.provider.make_request("gen_getContractSchema", [address])
+    schema = schema_response.get("result")
+    if not isinstance(schema, dict):
+        raise RuntimeError("deployed schema unavailable: " + json.dumps(schema_response, default=str))
+    methods = schema.get("methods", {})
+    if methods.get("create_bond", {}).get("payable") is not True:
+        raise RuntimeError("deployed create_bond is not payable")
     print(json.dumps({
         "network": "studionet",
         "chain_id": 61999,
@@ -87,6 +94,7 @@ def main() -> None:
         "deploy_transaction": tx_hex(tx),
         "wallet_policy": "disposable StudioNet-only signer; private key not retained",
         "deployer": signer.address,
+        "create_bond_payable": True,
     }, indent=2), flush=True)
 
 
