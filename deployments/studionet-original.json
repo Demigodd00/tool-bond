@@ -1,0 +1,14 @@
+{
+  "network": "studionet",
+  "chain_id": 61999,
+  "status": "VERIFIED_SOURCE_ONLY",
+  "source_commit": "268e1220e3e7f1d3ca3b1e7ce38ce17e62784266",
+  "source_url": "https://raw.githubusercontent.com/Demigodd00/tool-bond/268e1220e3e7f1d3ca3b1e7ce38ce17e62784266/contracts/ToolBond.py",
+  "source_sha256": "1bca545ac82015cdd9f09198ad8a203326a2402926a6c7be1578943dd9bf356e",
+  "contract_address": "0x2144D5B9D3094F501dB1779719AB3396bE1609e7",
+  "explorer": "https://explorer-studio.genlayer.com/address/0x2144D5B9D3094F501dB1779719AB3396bE1609e7",
+  "deploy_transaction": "0x1c50cd08f9a03053e2663c0151fe1cab070c5875ea7df2a91d65c3a84874dd51",
+  "wallet_policy": "disposable StudioNet-only signer; private key not retained",
+  "deployer": "0x63fc7A4d21bdF4e56184f90aEf089C269a3B7f40",
+  "verification": "Historical deployment: create_bond was non-payable and could not receive the required value. Superseded by deployments/studionet.json. No live funded bond was created."
+}
